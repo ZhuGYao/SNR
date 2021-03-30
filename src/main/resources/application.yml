@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/snr?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&socketTimeout=300000&connectTimeout=30000
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    initialization-mode: always
+mybatis:
+  type-aliases-package: com.zgy.snr.pojo
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+mapper:
+  mappers: com.zgy.snr.common.my.MyMapper
+  not-empty: false
+  identity: MYSQL
