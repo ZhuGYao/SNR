@@ -8,10 +8,10 @@
         <version>2.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.xrt</groupId>
-    <artifactId>counter</artifactId>
+    <groupId>com.zgy</groupId>
+    <artifactId>snr</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>counter</name>
+    <name>snr</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
