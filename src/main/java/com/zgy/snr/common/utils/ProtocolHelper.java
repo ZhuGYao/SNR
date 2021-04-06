@@ -87,6 +87,18 @@ public class ProtocolHelper {
     }
 
     /**
+     * 睡眠
+     * @param timeout
+     */
+    public static void sleep(Long timeout) {
+        try {
+            Thread.sleep(timeout);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 等待
      * @param countDownLatch 锁
      * @param timeout 等待时间
