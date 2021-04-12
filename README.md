@@ -9,6 +9,8 @@ springboot整合netty，rxjava，可进行TCP通信或者UDP通信，基于自�
 
 可以通过接口调用方式以及websocket方式与前端进行通信.
 
+software下附带的网络调试小工具，可以直接进行使用.
+
 ### 帮助 ###
 技术交流群：1018373095.
 
