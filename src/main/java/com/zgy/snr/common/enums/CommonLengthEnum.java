@@ -13,7 +13,8 @@ public enum CommonLengthEnum {
     CORE_C_HEAD_LENGTH(8, "C机芯包头以及长度字节共占4位"),
     A_HEART_LENGTH(20, "A心跳包长度"),
     B_HEART_LENGTH(22, "B心跳包长度"),
-    C_HEART_LENGTH(24, "C心跳包长度");
+    C_HEART_LENGTH(24, "C心跳包长度"),
+    COMPLETE(4, "满足四条完成");
 
     public final Integer value;
     public final String type;

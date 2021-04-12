@@ -5,6 +5,7 @@ import com.zgy.snr.common.IDataComplete;
 import com.zgy.snr.common.IReplyCallback;
 import com.zgy.snr.common.IVerification;
 import com.zgy.snr.common.check.BoardCheckFormat;
+import com.zgy.snr.common.check.CommonComplete;
 import com.zgy.snr.common.check.CommonVerification;
 import com.zgy.snr.common.check.CoreCheckFormat;
 import com.zgy.snr.common.enums.KeywordEnum;
@@ -37,13 +38,16 @@ public class RecvProcessService {
     @Autowired
     private BoardCheckFormat boardCheckFormat;
 
+    @Autowired
+    private CommonComplete commonComplete;
+
     /**
      * 机芯验证,无需重复接收
      * @param verification
      * @return
      */
     public Observable<String> processCore(IVerification verification){
-        return processCore(verification, recv -> true);
+        return processCore(verification, commonComplete.getNormal());
     }
 
     /**
@@ -62,7 +66,7 @@ public class RecvProcessService {
      * @return
      */
     public Observable<String> processBoard(IVerification verification){
-        return processBoard(verification, recv -> true);
+        return processBoard(verification, commonComplete.getNormal());
     }
 
     /**

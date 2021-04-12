@@ -1,12 +1,14 @@
 package com.zgy.snr.common.utils;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import com.zgy.snr.common.enums.KeywordEnum;
 import com.zgy.snr.common.enums.TimeoutEnum;
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,6 +76,44 @@ public class ProtocolHelper {
         if (!subscribe.isDisposed()) {
             subscribe.dispose();
         }
+        return result.getValue();
+    }
+
+    /**
+     * 同步执行命令，接收多条数据
+     * @param observable
+     * @param timeout
+     * @param <T>
+     * @return
+     */
+    public static  <T> List<T> commonBlockingSubscribeMore(Observable<T> observable, Long timeout) {
+        ObservableMoreResult result = new ObservableMoreResult();
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        observable.subscribe(new Observer<T>() {
+            Disposable mdisposable;
+            @Override
+            public void onSubscribe(Disposable disposable) {
+                mdisposable = disposable;
+            }
+
+            @Override
+            public void onNext(T t) {
+                result.addValue(t);
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                countDownLatch.countDown();
+                mdisposable.dispose();
+            }
+
+            @Override
+            public void onComplete() {
+                countDownLatch.countDown();
+                mdisposable.dispose();
+            }
+        });
+        await(countDownLatch, timeout);
         return result.getValue();
     }
 
