@@ -6,6 +6,7 @@ package com.zgy.snr.common;
  * @data 2021/3/17 11:32
  */
 
+@FunctionalInterface
 public interface IVerification {
 
     /**

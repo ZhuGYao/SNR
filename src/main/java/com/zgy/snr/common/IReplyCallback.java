@@ -6,6 +6,7 @@ package com.zgy.snr.common;
  * @data 2021/3/16 10:38
  */
 
+@FunctionalInterface
 public interface IReplyCallback {
 
     Boolean recvData(String recv);

@@ -6,6 +6,7 @@ package com.zgy.snr.common;
  * @data 2021/3/18 11:59
  */
 
+@FunctionalInterface
 public interface IDataComplete {
 
     Boolean isComplete(String recv);
